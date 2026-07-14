@@ -1,17 +1,20 @@
 import { Outlet, Link } from 'react-router-dom'
 import { Instagram, Linkedin } from 'lucide-react'
-import klaxonLogo from '@/assets/magnificquero-que-o-que-esta-branco-vc-mude-para-preto97922-0ff42.png'
 
 export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans text-foreground">
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-border/40 transition-all duration-300">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-center">
-          <Link to="/" className="inline-flex items-center">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-xl border-b border-border/40 transition-all duration-300">
+        <div className="container mx-auto px-4 h-20 md:h-24 flex items-center justify-center">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center transition-transform hover:scale-[1.02] duration-500"
+          >
             <img
-              src={klaxonLogo}
+              src="/klaxon-logo.svg"
               alt="Klaxon"
-              className="h-9 md:h-10 w-auto object-contain mix-blend-multiply"
+              className="h-8 md:h-10 lg:h-12 w-auto select-none"
+              draggable={false}
             />
           </Link>
         </div>
