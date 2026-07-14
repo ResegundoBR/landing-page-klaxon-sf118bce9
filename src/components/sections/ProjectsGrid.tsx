@@ -1,0 +1,66 @@
+export function ProjectsGrid() {
+  const projects = [
+    {
+      img: 'https://img.usecurling.com/p/800/800?q=modern%20living%20room',
+      name: 'Residência Alphaville',
+      arch: 'Studio K',
+    },
+    {
+      img: 'https://img.usecurling.com/p/800/800?q=luxury%20kitchen',
+      name: 'Cobertura Jardins',
+      arch: 'Arquiteto Renato',
+    },
+    {
+      img: 'https://img.usecurling.com/p/800/800?q=office%20interior%20design',
+      name: 'Sede Corporativa',
+      arch: 'KLAXON Design',
+    },
+    {
+      img: 'https://img.usecurling.com/p/800/800?q=minimalist%20bedroom',
+      name: 'Villa Nova',
+      arch: 'Arch Duo',
+    },
+  ]
+
+  return (
+    <section className="py-24 md:py-32 bg-background">
+      <div className="container px-4 mx-auto">
+        <div className="text-center mb-16 md:mb-24 animate-fade-in-up">
+          <span className="text-primary font-medium tracking-widest uppercase text-sm mb-4 block">
+            Portfólio
+          </span>
+          <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-foreground">
+            Padrão Internacional
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
+            Conheça algumas de nossas entregas que redefinem o conceito de alto padrão através de
+            matérias-primas nobres e precisão milimétrica.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
+          {projects.map((p, i) => (
+            <div
+              key={i}
+              className="group relative overflow-hidden aspect-[4/3] md:aspect-square bg-muted cursor-pointer"
+            >
+              <img
+                src={p.img}
+                alt={p.name}
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-10 text-white">
+                <h3 className="text-2xl md:text-3xl font-serif font-bold mb-2 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  {p.name}
+                </h3>
+                <p className="text-primary font-medium tracking-wide uppercase text-sm transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                  {p.arch}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
