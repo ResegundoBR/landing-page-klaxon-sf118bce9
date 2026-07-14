@@ -1,5 +1,6 @@
 import { Outlet, Link } from 'react-router-dom'
 import { Instagram, Linkedin } from 'lucide-react'
+import klaxonLogo from '@/assets/chatgpt-image-14-de-jul.de-2026-164012-e2e9c.png'
 
 export default function Layout() {
   return (
@@ -7,7 +8,11 @@ export default function Layout() {
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-border/40 transition-all duration-300">
         <div className="container mx-auto px-4 h-20 flex items-center justify-center">
           <Link to="/" className="inline-flex items-center">
-            <img src="/klaxon-logo.svg" alt="Klaxon" className="h-9 md:h-10 w-auto" />
+            <img
+              src={klaxonLogo}
+              alt="Klaxon"
+              className="h-9 md:h-10 w-auto object-contain mix-blend-multiply"
+            />
           </Link>
         </div>
       </header>
