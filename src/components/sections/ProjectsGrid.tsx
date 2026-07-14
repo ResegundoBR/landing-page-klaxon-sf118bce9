@@ -1,4 +1,4 @@
-import conectaImg from '@/assets/conecta.especial1-dc13f.jpeg'
+import conectaImg from '@/assets/conecta.landing.jpg-2-ec9ed.jpeg'
 
 export function ProjectsGrid() {
   const projects = [
