@@ -1,6 +1,6 @@
 import { Outlet, Link } from 'react-router-dom'
 import { Instagram, Linkedin } from 'lucide-react'
-import klaxonLogo from '@/assets/chatgpt-image-14-de-jul.de-2026-164012-e2e9c.png'
+import klaxonLogo from '@/assets/magnificquero-que-o-que-esta-branco-vc-mude-para-preto97922-0ff42.png'
 
 export default function Layout() {
   return (
