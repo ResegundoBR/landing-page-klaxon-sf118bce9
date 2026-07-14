@@ -8,19 +8,19 @@ export function ProjectsGrid() {
       arch: 'Conecta',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=luxury%20kitchen',
-      name: 'Cobertura Jardins',
-      arch: 'Arquiteto Renato',
+      img: 'https://img.usecurling.com/p/800/800?q=modern%20lamp',
+      name: 'Residência Lucas Mello',
+      arch: 'Pendente Ladder',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=office%20interior%20design',
-      name: 'Sede Corporativa',
-      arch: 'KLAXON Design',
+      img: 'https://img.usecurling.com/p/800/800?q=studio%20lighting',
+      name: 'Estúdio Lucia F Carneiro',
+      arch: 'Luminária So Good',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=minimalist%20bedroom',
-      name: 'Villa Nova',
-      arch: 'Arch Duo',
+      img: 'https://img.usecurling.com/p/800/800?q=pendant%20light',
+      name: 'Condomínio Alphaville',
+      arch: 'Pendente Upside',
     },
   ]
 
