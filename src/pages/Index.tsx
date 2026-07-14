@@ -7,11 +7,11 @@ import { FAQSection } from '@/components/sections/FAQSection'
 import { useSource } from '@/hooks/use-source'
 
 export default function Index() {
-  const { isPinterest, source } = useSource()
+  const { isPinterest, isMeta, source } = useSource()
 
   return (
     <div className="w-full flex flex-col">
-      <HeroSection isPinterest={isPinterest} />
+      <HeroSection isPinterest={isPinterest} isMeta={isMeta} />
       <ProjectsGrid />
       <Differentials />
       <SelectionSection />
