@@ -5,8 +5,10 @@ export function useSource() {
   const [searchParams] = useSearchParams()
 
   return useMemo(() => {
-    const source = searchParams.get('utm_source') || 'direct'
-    const isPinterest = source.toLowerCase() === 'pinterest'
-    return { source, isPinterest }
+    const raw = searchParams.get('utm_source') || 'direct'
+    const source = raw.toLowerCase()
+    const isPinterest = source === 'pinterest'
+    const isMeta = source === 'meta' || source === 'facebook' || source === 'instagram'
+    return { source: raw, isPinterest, isMeta }
   }, [searchParams])
 }

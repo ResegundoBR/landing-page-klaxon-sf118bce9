@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-14T17:14:24.881Z",
+  "generatedAt": "2026-07-14T17:43:01.453Z",
   "collections": [
     {
       "name": "users",
@@ -110,6 +110,18 @@
           "required": false,
           "system": false,
           "autodateTriggers": ["onCreate", "onUpdate"]
+        },
+        {
+          "name": "modalidade",
+          "type": "text",
+          "required": false,
+          "system": false
+        },
+        {
+          "name": "investimento",
+          "type": "text",
+          "required": false,
+          "system": false
         }
       ],
       "indexes": []

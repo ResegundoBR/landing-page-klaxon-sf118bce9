@@ -2,11 +2,11 @@ import { ArrowRight } from 'lucide-react'
 
 export function HeroSection({ isPinterest }: { isPinterest: boolean }) {
   const headline = isPinterest
-    ? 'Transforme suas referências em realidade: Projetos sob medida com padrão internacional.'
+    ? 'Transforme suas referências em realidade: fabricação sob medida com padrão internacional.'
     : 'Design Assinado e Acabamento Premium: A sofisticação que seu projeto merece.'
 
   const subhead = isPinterest
-    ? 'Traga suas inspirações. Nós entregamos exclusividade e perfeição absoluta em cada detalhe da fabricação.'
+    ? 'Trouxe uma referência de fora do Brasil? Nós fabricamos sob medida — do esboço à instalação — entregando exclusividade e perfeição absoluta em cada detalhe.'
     : 'Consultoria especializada e exclusividade total para transformar os seus espaços em verdadeiras obras de arte.'
 
   return (
@@ -16,6 +16,7 @@ export function HeroSection({ isPinterest }: { isPinterest: boolean }) {
           src="https://img.usecurling.com/p/1200/1800?q=luxury%20interior%20design"
           alt="Ambiente luxuoso e exclusivo"
           className="w-full h-full object-cover object-center"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-black/50" />
       </div>

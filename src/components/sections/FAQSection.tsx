@@ -8,20 +8,28 @@ import {
 export function FAQSection() {
   const faqs = [
     {
-      q: 'Qual o prazo de entrega dos móveis sob medida?',
-      a: 'Nosso prazo padrão varia de 45 a 60 dias úteis após a aprovação final do projeto executivo e de acabamentos, dependendo da complexidade e dos materiais nobres escolhidos para a produção.',
+      q: 'Vocês fazem qualquer peça, mesmo que eu só tenha uma foto de referência?',
+      a: 'Sim. A partir da sua referência, avaliamos o que é possível desenvolver com design próprio. O especialista de projetos conversa com você para entender sua necessidade e o que espera.',
     },
     {
-      q: 'A Klaxon atende projetos fora de São Paulo?',
-      a: 'Sim, atendemos todo o território nacional. Nossa logística especializada garante que os móveis cheguem com total segurança, e nossa equipe própria realiza a montagem final em qualquer estado do Brasil.',
+      q: 'Quanto tempo leva?',
+      a: 'Depende da complexidade do projeto. O especialista informa o prazo estimado logo na primeira conversa.',
     },
     {
-      q: 'Posso personalizar as dimensões e os acabamentos dos itens?',
-      a: 'Absolutamente. A essência do nosso trabalho é a customização extrema. Todos os projetos são adaptados milimetricamente ao seu espaço, com uma vasta gama de acabamentos premium, folheados e pedras à sua disposição.',
+      q: 'Como funciona a instalação?',
+      a: 'Juntamente com a peça você receberá toda a orientação técnica para a instalação e suporte da fábrica em caso de dúvidas, imprevistos ou problemas que ocorram durante ou após a instalação.',
     },
     {
-      q: 'Como funciona o processo inicial de consultoria?',
-      a: 'Após o seu contato, um consultor dedicado organizará uma reunião (presencial ou online) para entender perfeitamente suas necessidades, analisar referências visuais e iniciar o briefing técnico detalhado para a equipe de design.',
+      q: 'Tem garantia?',
+      a: 'Sim. Todos os nossos produtos saem de fábrica com 1 ano de garantia para problemas de fabricação, porém você terá suporte vitalício no produto que comprar. Se futuramente quebrar, estragar, deixar de funcionar, queira trocar de acabamento, tudo isso a fábrica lhe dará total suporte e auxílio.',
+    },
+    {
+      q: 'Porque custa mais que peças parecidas que encontro online?',
+      a: 'Porque além de ser um projeto exclusivo, único, feito para você, a Klaxon só trabalha com matérias primas e insumos de altíssima qualidade e durabilidade. Nossos produtos são feitos para encarar décadas de uso, não são descartáveis. Aqui você não compra apenas um produto, mas sim segurança, garantia, qualidade e acabamento.',
+    },
+    {
+      q: 'Preciso de arquiteto para comprar?',
+      a: 'Não. Nossos especialistas lhe darão todo o suporte necessário para que possa fazer a escolha de forma segura e assertiva.',
     },
   ]
 

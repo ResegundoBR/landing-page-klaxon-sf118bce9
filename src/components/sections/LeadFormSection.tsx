@@ -28,6 +28,8 @@ const formSchema = z.object({
   email: z.string().email('E-mail inválido'),
   whatsapp: z.string().min(10, 'WhatsApp é obrigatório'),
   project_type: z.string().min(1, 'Selecione o tipo de projeto'),
+  modalidade: z.string().min(1, 'Selecione a modalidade'),
+  investimento: z.string().min(1, 'Selecione a faixa de investimento'),
   reference_links: z.string().optional(),
 })
 
@@ -37,7 +39,15 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
-    defaultValues: { name: '', email: '', whatsapp: '', project_type: '', reference_links: '' },
+    defaultValues: {
+      name: '',
+      email: '',
+      whatsapp: '',
+      project_type: '',
+      modalidade: '',
+      investimento: '',
+      reference_links: '',
+    },
   })
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -148,22 +158,67 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                     )}
                   />
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="project_type"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-foreground">Tipo de Projeto</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 rounded-none border-border">
+                              <SelectValue placeholder="Selecione a categoria" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="residencial">Residencial de Alto Padrão</SelectItem>
+                            <SelectItem value="comercial">Comercial / Varejo</SelectItem>
+                            <SelectItem value="corporativo">Corporativo / Escritórios</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="modalidade"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-foreground">Modalidade</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 rounded-none border-border">
+                              <SelectValue placeholder="Selecione a modalidade" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="pecas-de-linha">Peças de Linha</SelectItem>
+                            <SelectItem value="projeto-especial">Projeto Especial</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
-                  name="project_type"
+                  name="investimento"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-foreground">Tipo de Projeto</FormLabel>
+                      <FormLabel className="text-foreground">Desejo investir</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger className="h-12 rounded-none border-border">
-                            <SelectValue placeholder="Selecione a categoria" />
+                            <SelectValue placeholder="Selecione a faixa de investimento" />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="residencial">Residencial de Alto Padrão</SelectItem>
-                          <SelectItem value="comercial">Comercial / Varejo</SelectItem>
-                          <SelectItem value="corporativo">Corporativo / Escritórios</SelectItem>
+                          <SelectItem value="ate-500">Até R$ 500,00</SelectItem>
+                          <SelectItem value="ate-2000">Até R$ 2.000,00</SelectItem>
+                          <SelectItem value="acima-2000">Acima de R$ 2.000,00</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />

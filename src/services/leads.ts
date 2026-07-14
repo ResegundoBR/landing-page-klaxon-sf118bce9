@@ -5,6 +5,8 @@ export interface LeadData {
   email: string
   whatsapp: string
   project_type: string
+  modalidade?: string
+  investimento?: string
   source?: string
   reference_links?: string
 }
