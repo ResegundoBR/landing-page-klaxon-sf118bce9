@@ -1,4 +1,7 @@
 import conectaImg from '@/assets/conecta.landing.jpg-2-ec9ed.jpeg'
+import ladderImg from '@/assets/ladder.landing.jpg-d0602.jpeg'
+import sogoodImg from '@/assets/sogood.landing.jpg-812b6.jpeg'
+import upsideImg from '@/assets/upside.landing.jpg-901c6.jpeg'
 
 export function ProjectsGrid() {
   const projects = [
@@ -8,17 +11,17 @@ export function ProjectsGrid() {
       arch: 'Conecta',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=modern%20lamp',
+      img: ladderImg,
       name: 'Residência Lucas Mello',
       arch: 'Pendente Ladder',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=studio%20lighting',
+      img: sogoodImg,
       name: 'Estúdio Lucia F Carneiro',
       arch: 'Luminária So Good',
     },
     {
-      img: 'https://img.usecurling.com/p/800/800?q=pendant%20light',
+      img: upsideImg,
       name: 'Condomínio Alphaville',
       arch: 'Pendente Upside',
     },
