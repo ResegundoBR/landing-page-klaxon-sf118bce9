@@ -5,7 +5,6 @@ const WHATSAPP_URL = 'https://wa.me/5541987462093'
 const HERO_PARAGRAPHS = [
   'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer.',
   'A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia.',
-  'A partir dela, criamos uma peça exclusiva, pensada para o seu ambiente.',
 ]
 
 export function HeroSection() {

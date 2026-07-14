@@ -1,9 +1,11 @@
+import conectaImg from '@/assets/conecta.especial1-dc13f.jpeg'
+
 export function ProjectsGrid() {
   const projects = [
     {
-      img: 'https://img.usecurling.com/p/800/800?q=modern%20living%20room',
-      name: 'Residência Alphaville',
-      arch: 'Studio K',
+      img: conectaImg,
+      name: 'Residência Cond. Anhangava',
+      arch: 'Conecta',
     },
     {
       img: 'https://img.usecurling.com/p/800/800?q=luxury%20kitchen',
