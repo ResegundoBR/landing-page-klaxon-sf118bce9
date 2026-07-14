@@ -5,19 +5,10 @@ export default function Layout() {
   return (
     <div className="flex flex-col min-h-screen bg-background font-sans text-foreground">
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-md border-b border-border/40 transition-all duration-300">
-        <div className="container mx-auto px-4 h-20 flex items-center justify-between">
-          <Link
-            to="/"
-            className="font-serif text-2xl md:text-3xl font-bold tracking-widest text-foreground"
-          >
-            KLAXON
+        <div className="container mx-auto px-4 h-20 flex items-center justify-center">
+          <Link to="/" className="inline-flex items-center">
+            <img src="/klaxon-logo.svg" alt="Klaxon" className="h-9 md:h-10 w-auto" />
           </Link>
-          <a
-            href="#contato"
-            className="bg-foreground text-background px-5 py-2.5 md:px-8 md:py-3 text-xs md:text-sm font-medium tracking-wide uppercase hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-          >
-            Fale com um Consultor
-          </a>
         </div>
       </header>
 

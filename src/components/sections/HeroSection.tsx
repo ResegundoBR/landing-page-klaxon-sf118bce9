@@ -2,14 +2,14 @@ import { ArrowRight, MessageCircle } from 'lucide-react'
 
 const WHATSAPP_URL = 'https://wa.me/5541987462093'
 
-export function HeroSection({ isPinterest, isMeta }: { isPinterest: boolean; isMeta: boolean }) {
-  const headline = 'Existem projetos que não encontram a luminária certa. Encontram a Klaxon.'
+const HERO_PARAGRAPHS = [
+  'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer.',
+  'A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia.',
+  'A partir dela, criamos uma peça exclusiva, pensada para o seu ambiente.',
+]
 
-  const description = isPinterest
-    ? 'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer. A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia. A partir da sua referência, fabricamos uma peça exclusiva sob medida — do esboço à instalação.'
-    : isMeta
-      ? 'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer. A inspiração pode nascer de uma viagem, de uma obra de arquitetura ou simplesmente de uma ideia. A partir dela, criamos uma peça com design assinado e acabamento premium, pensada para o seu ambiente.'
-      : 'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer. A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia. A partir dela, criamos uma peça exclusiva, pensada para o seu ambiente.'
+export function HeroSection() {
+  const headline = 'Existem projetos que não encontram a luminária certa. Encontram a Klaxon.'
 
   return (
     <section className="relative w-full min-h-[100vh] flex items-center justify-center overflow-hidden py-20 md:py-0">
@@ -27,9 +27,16 @@ export function HeroSection({ isPinterest, isMeta }: { isPinterest: boolean; isM
         <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-serif font-bold mb-6 leading-tight tracking-tight">
           {headline}
         </h1>
-        <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-10 md:mb-12 max-w-3xl mx-auto font-light leading-relaxed">
-          {description}
-        </p>
+        <div className="mb-10 md:mb-12 max-w-3xl mx-auto space-y-4 md:space-y-5">
+          {HERO_PARAGRAPHS.map((text, i) => (
+            <p
+              key={i}
+              className="text-base sm:text-lg md:text-xl text-gray-200 font-light leading-relaxed"
+            >
+              {text}
+            </p>
+          ))}
+        </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 max-w-2xl mx-auto">
           <a
             href={WHATSAPP_URL}
