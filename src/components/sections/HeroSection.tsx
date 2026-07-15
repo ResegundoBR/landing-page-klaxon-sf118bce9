@@ -1,5 +1,5 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
-import heroBg from '@/assets/upper.landing.jpg-1-7110b.jpeg'
+import heroBg from '@/assets/chatgpt-image-14-de-jul.de-2026-164012-e2e9c.png'
 
 const HERO_PARAGRAPHS = [
   'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer.',

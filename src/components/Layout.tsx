@@ -1,5 +1,5 @@
 import { Outlet, Link } from 'react-router-dom'
-import { Instagram, Linkedin } from 'lucide-react'
+import { Instagram, Globe } from 'lucide-react'
 
 export default function Layout() {
   return (
@@ -45,16 +45,28 @@ export default function Layout() {
             </div>
 
             <div className="flex gap-6">
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+              <a
+                href="https://www.instagram.com/klaxonbrasil/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors"
+              >
                 <Instagram className="w-6 h-6" />
                 <span className="sr-only">Instagram</span>
               </a>
-              <a href="#" className="text-gray-400 hover:text-primary transition-colors">
-                <Linkedin className="w-6 h-6" />
-                <span className="sr-only">LinkedIn</span>
+              <a
+                href="https://www.klaxon.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-primary transition-colors"
+              >
+                <Globe className="w-6 h-6" />
+                <span className="sr-only">Website</span>
               </a>
               <a
-                href="#"
+                href="https://br.pinterest.com/klaxonbrasil/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary transition-colors flex items-center justify-center"
               >
                 <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
@@ -68,10 +80,20 @@ export default function Layout() {
           <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
             <p>&copy; {new Date().getFullYear()} Klaxon Brasil. Todos os direitos reservados.</p>
             <div className="flex gap-4 mt-4 md:mt-0">
-              <a href="#" className="hover:text-gray-300">
+              <a
+                href="https://reiko.top/klaxon/politica-de-privacidade/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300"
+              >
                 Política de Privacidade
               </a>
-              <a href="#" className="hover:text-gray-300">
+              <a
+                href="https://reiko.top/klaxon/termos-de-servico/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-gray-300"
+              >
                 Termos de Uso
               </a>
             </div>
