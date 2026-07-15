@@ -1,26 +1,26 @@
-import { Compass, Gem, Sliders, Truck } from 'lucide-react'
+import { Sparkles, PencilRuler, Factory, ClipboardCheck } from 'lucide-react'
 
 export function Differentials() {
   const features = [
     {
-      icon: Compass,
-      title: 'Design Autoral',
-      desc: 'Criações exclusivas que refletem de forma única a identidade e o estilo de vida de cada cliente.',
+      icon: Sparkles,
+      title: 'A inspiração é o ponto de partida.',
+      desc: 'Uma viagem, um ambiente, um projeto ou uma imagem salva. A partir dessa referência, desenvolvemos uma luminária exclusiva para o seu espaço.',
     },
     {
-      icon: Gem,
-      title: 'Acabamento Premium',
-      desc: 'Materiais nobres e execução impecável para garantir máxima durabilidade, estética e sofisticação.',
+      icon: PencilRuler,
+      title: 'Desenvolvimento exclusivo.',
+      desc: 'Cada projeto nasce do zero. Proporções, materiais, acabamentos e iluminação são definidos para o seu ambiente, nunca adaptados de um catálogo.',
     },
     {
-      icon: Sliders,
-      title: 'Customização Total',
-      desc: 'Flexibilidade absoluta em medidas, materiais e acabamentos para atender as demandas do seu projeto.',
+      icon: Factory,
+      title: 'Fábrica própria.',
+      desc: 'Você conversa diretamente com quem projeta e fabrica a peça, acompanhando cada etapa do desenvolvimento até a entrega.',
     },
     {
-      icon: Truck,
-      title: 'Logística Especializada',
-      desc: 'Entrega e montagem realizadas por equipe própria com padrão de excelência e cuidado white-glove.',
+      icon: ClipboardCheck,
+      title: 'Acompanhamento completo.',
+      desc: 'Da primeira conversa à instalação, nossa equipe acompanha o processo para que cada detalhe corresponda ao projeto.',
     },
   ]
 
