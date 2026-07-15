@@ -39,6 +39,9 @@ export function ProjectsGrid() {
             <br />
             Se entrega.
           </h2>
+          <p className="text-base md:text-lg text-muted-foreground font-light max-w-2xl mx-auto">
+            Projetos que cruzam fronteiras sem sair do Brasil.
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
