@@ -35,7 +35,9 @@ export function ProjectsGrid() {
             Portfólio
           </span>
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 text-foreground">
-            Padrão Internacional
+            Padrão internacional não se declara.
+            <br />
+            Se entrega.
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
             Conheça algumas de nossas entregas que redefinem o conceito de alto padrão através de
