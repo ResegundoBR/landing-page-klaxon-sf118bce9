@@ -1,11 +1,13 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
+import { Upload, X, ImageIcon } from 'lucide-react'
 import { createLead } from '@/services/leads'
 import { useToast } from '@/hooks/use-toast'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Select,
   SelectContent,
@@ -22,6 +24,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { extractFieldErrors } from '@/lib/pocketbase/errors'
+import { cn } from '@/lib/utils'
 
 const formSchema = z.object({
   name: z.string().min(2, 'Nome é obrigatório'),
@@ -30,12 +33,29 @@ const formSchema = z.object({
   project_type: z.string().min(1, 'Selecione o tipo de projeto'),
   modalidade: z.string().min(1, 'Selecione a modalidade'),
   investimento: z.string().min(1, 'Selecione a faixa de investimento'),
+  user_profile: z.string().min(1, 'Selecione uma opção'),
+  project_phase: z.string().min(1, 'Selecione uma opção'),
   reference_links: z.string().optional(),
 })
+
+const userProfileOptions = [
+  { value: 'cliente-final', label: 'Cliente final construindo, reformando ou decorando' },
+  { value: 'arquiteto-designer', label: 'Arquiteto ou designer especificando para cliente' },
+  { value: 'lojista-parceiro', label: 'Lojista ou parceiro comercial' },
+]
+
+const projectPhaseOptions = [
+  { value: 'pesquisa-inicial', label: 'Pesquisa inicial' },
+  { value: 'fase-orcamento', label: 'Fase de orçamento' },
+  { value: 'fase-compra', label: 'Fase de compra' },
+  { value: 'tenho-referencia', label: 'Já tenho uma referência e preciso encontrar uma solução' },
+]
 
 export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean; source: string }) {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
+  const [attachment, setAttachment] = useState<File | null>(null)
+  const fileInputRef = useRef<HTMLInputElement>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -46,20 +66,45 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
       project_type: '',
       modalidade: '',
       investimento: '',
+      user_profile: '',
+      project_phase: '',
       reference_links: '',
     },
   })
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (file) {
+      if (file.size > 5242880) {
+        toast({
+          variant: 'destructive',
+          title: 'Arquivo muito grande',
+          description: 'O tamanho máximo permitido é 5MB.',
+        })
+        return
+      }
+      setAttachment(file)
+    }
+  }
+
+  function removeAttachment() {
+    setAttachment(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
+  }
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true)
     try {
-      await createLead({ ...values, source })
+      await createLead({ ...values, source, attachment })
       toast({
         title: 'Sucesso!',
         description:
           'Sua solicitação foi enviada. Um consultor Klaxon entrará em contato em breve.',
       })
       form.reset()
+      removeAttachment()
     } catch (err) {
       const fieldErrors = extractFieldErrors(err)
       if (Object.keys(fieldErrors).length > 0) {
@@ -87,14 +132,12 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
               Consultoria
             </span>
             <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 leading-tight">
-              {isPinterest
-                ? 'Envie sua pasta de referências'
-                : 'Inicie o seu projeto exclusivo conosco'}
+              Vamos conversar sobre o seu projeto?
             </h2>
             <p className="text-gray-400 text-lg mb-8 font-light leading-relaxed">
-              {isPinterest
-                ? 'Compartilhe suas inspirações do Pinterest conosco. Nossos consultores irão analisar minuciosamente suas ideias e propor soluções sob medida com o inconfundível padrão Klaxon.'
-                : 'Preencha o formulário para falar com um de nossos especialistas em design. Garantimos um atendimento ágil e altamente personalizado para compreender profundamente suas necessidades.'}
+              Compartilhe conosco sua pasta de PINS, uma imagem, uma referência ou apenas descreva o
+              que você imaginou. Nossa equipe avalia a melhor solução para desenvolver uma luminária
+              exclusiva para o seu ambiente.
             </p>
           </div>
 
@@ -225,27 +268,140 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                     </FormItem>
                   )}
                 />
-                {isPinterest && (
-                  <FormField
-                    control={form.control}
-                    name="reference_links"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel className="text-foreground">
-                          Link da sua Pasta do Pinterest
-                        </FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="https://br.pinterest.com/..."
-                            className="h-12 rounded-none border-border"
-                            {...field}
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
+                <FormField
+                  control={form.control}
+                  name="user_profile"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">
+                        Qual melhor descreve você neste projeto?
+                      </FormLabel>
+                      <FormControl>
+                        <ToggleGroup
+                          type="single"
+                          value={field.value}
+                          onValueChange={(val) => field.onChange(val ?? '')}
+                          className="flex flex-wrap gap-2 justify-start"
+                        >
+                          {userProfileOptions.map((opt) => (
+                            <ToggleGroupItem
+                              key={opt.value}
+                              value={opt.value}
+                              className={cn(
+                                'rounded-full border border-border px-4 py-2 text-sm',
+                                'hover:bg-accent transition-colors duration-200',
+                                'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
+                                'data-[state=on]:border-primary',
+                              )}
+                            >
+                              {opt.label}
+                            </ToggleGroupItem>
+                          ))}
+                        </ToggleGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="project_phase"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">
+                        Em que fase está o seu projeto?
+                      </FormLabel>
+                      <FormControl>
+                        <ToggleGroup
+                          type="single"
+                          value={field.value}
+                          onValueChange={(val) => field.onChange(val ?? '')}
+                          className="flex flex-wrap gap-2 justify-start"
+                        >
+                          {projectPhaseOptions.map((opt) => (
+                            <ToggleGroupItem
+                              key={opt.value}
+                              value={opt.value}
+                              className={cn(
+                                'rounded-full border border-border px-4 py-2 text-sm',
+                                'hover:bg-accent transition-colors duration-200',
+                                'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
+                                'data-[state=on]:border-primary',
+                              )}
+                            >
+                              {opt.label}
+                            </ToggleGroupItem>
+                          ))}
+                        </ToggleGroup>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="reference_links"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-foreground">
+                        Links de referência (Pinterest, sites, etc.)
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="https://br.pinterest.com/..."
+                          className="h-12 rounded-none border-border"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormItem>
+                  <FormLabel className="text-foreground">Imagem de referência (opcional)</FormLabel>
+                  <div className="space-y-3">
+                    {attachment ? (
+                      <div className="flex items-center gap-3 border border-border rounded-none p-3">
+                        <ImageIcon className="w-8 h-8 text-muted-foreground shrink-0" />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium truncate">{attachment.name}</p>
+                          <p className="text-xs text-muted-foreground">
+                            {(attachment.size / 1024 / 1024).toFixed(2)} MB
+                          </p>
+                        </div>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={removeAttachment}
+                          className="shrink-0"
+                        >
+                          <X className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ) : (
+                      <div
+                        className="border border-dashed border-border rounded-none p-6 flex flex-col items-center gap-2 cursor-pointer hover:bg-accent transition-colors duration-200"
+                        onClick={() => fileInputRef.current?.click()}
+                      >
+                        <Upload className="w-8 h-8 text-muted-foreground" />
+                        <p className="text-sm text-muted-foreground text-center">
+                          Clique para anexar uma imagem de referência
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          JPG, PNG, WEBP ou GIF (máx. 5MB)
+                        </p>
+                      </div>
                     )}
-                  />
-                )}
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp,image/gif"
+                      onChange={handleFileChange}
+                      className="hidden"
+                    />
+                  </div>
+                </FormItem>
                 <Button
                   type="submit"
                   className="w-full h-14 text-base font-semibold uppercase tracking-wider rounded-none mt-4"
