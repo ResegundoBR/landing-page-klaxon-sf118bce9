@@ -1,4 +1,5 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
+import heroBg from '@/assets/conecta.landing.jpg-aa42e.jpeg'
 
 const WHATSAPP_URL = 'https://wa.me/5541987462093'
 
@@ -14,7 +15,7 @@ export function HeroSection() {
     <section className="relative w-full min-h-[100vh] flex items-center justify-center overflow-hidden py-20 md:py-0">
       <div className="absolute inset-0 z-0">
         <img
-          src="https://img.usecurling.com/p/1200/1800?q=luxury%20lighting%20fixture"
+          src={heroBg}
           alt="Ambiente luxuoso e exclusivo com luminária decorativa"
           className="w-full h-full object-cover object-center"
           loading="eager"
