@@ -1,9 +1,8 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
-import heroBg from '@/assets/chatgpt-image-14-de-jul.de-2026-164012-e2e9c.png'
+import heroBg from '@/assets/upper.landing.jpg-1-8bd97.jpeg'
 
 const HERO_PARAGRAPHS = [
-  'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer.',
-  'A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia.',
+  'Desenvolvemos luminárias decorativas sob medida para projetos que começam onde as possibilidades de um catálogo terminam.',
 ]
 
 interface HeroSectionProps {
@@ -52,8 +51,8 @@ export function HeroSection({ onSelectModalidade }: HeroSectionProps) {
             className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider hover:bg-white hover:text-foreground transition-all duration-500 group w-full sm:w-auto"
           >
             <MessageCircle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-left leading-tight">
-              Quero desenvolver uma luminária exclusiva
+            <span className="text-left leading-tight max-w-[200px]">
+              QUERO DESENVOLVER UMA LUMINÁRIA EXCLUSIVA
             </span>
             <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
           </button>
@@ -63,8 +62,8 @@ export function HeroSection({ onSelectModalidade }: HeroSectionProps) {
             className="inline-flex items-center justify-center gap-3 border border-white/70 text-white px-6 sm:px-8 py-4 text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider hover:bg-white hover:text-foreground transition-all duration-500 group w-full sm:w-auto"
           >
             <MessageCircle className="w-5 h-5 flex-shrink-0" />
-            <span className="text-left leading-tight">
-              Quero enviar uma referência para avaliação
+            <span className="text-left leading-tight max-w-[200px]">
+              QUERO ENVIAR UMA REFERÊNCIA PARA AVALIAÇÃO
             </span>
             <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
           </button>
