@@ -4,20 +4,20 @@ export function SelectionSection() {
   const cards = [
     {
       icon: Lightbulb,
-      title: 'Peças de Linha',
+      title: 'Coleções Klaxon',
       description:
-        'Designs autorais prontos para o seu ambiente, já validado e aprovado pelo mercado de luxo brasileiro. Você escolhe, a gente produz e entrega em todo Brasil.',
-      button: 'Quero me inspirar no pronto',
-      image: 'https://img.usecurling.com/p/600/400?q=luxury%20lamp%20showroom',
+        'Nossas coleções reúnem luminárias autorais desenvolvidas ao longo de doze anos de fábrica. Produzidas sob encomenda, elas fazem parte de projetos assinados por arquitetos que encontram na Klaxon uma extensão do próprio processo criativo. Escolha a peça que melhor conversa com o seu ambiente.',
+      button: 'Explorar as coleções',
+      image: 'https://img.usecurling.com/p/600/400?q=luxury%20bedroom%20lamp%20constellation',
       modalidade: 'pecas-de-linha',
     },
     {
       icon: PenTool,
-      title: 'Projetos Especiais',
+      title: 'Quero desenvolver uma luminária.',
       description:
-        'Tenho uma referência (às vezes de fora do Brasil) ou uma ideia só sua. Nós fabricamos sob medida, do esboço à instalação.',
-      button: 'Quero algo exclusivo',
-      image: 'https://img.usecurling.com/p/600/400?q=custom%20lighting%20design%20sketch',
+        'Mais do que uma luminária, uma experiência de criação. Poucos clientes conhecem onde uma luminária realmente nasce. Tenha acesso à fábrica, acompanhe cada etapa e participe do desenvolvimento de uma peça feita exclusivamente para você.',
+      button: 'Desenvolver uma peça exclusiva',
+      image: 'https://img.usecurling.com/p/600/400?q=luxury%20lobby%20lighting%20fixture',
       modalidade: 'projeto-especial',
     },
   ]
