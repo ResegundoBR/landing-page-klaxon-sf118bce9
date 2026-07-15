@@ -40,8 +40,9 @@ export function ProjectsGrid() {
             Se entrega.
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-            Conheça algumas de nossas entregas que redefinem o conceito de alto padrão através de
-            matérias-primas nobres e precisão milimétrica.
+            <li class="py-0">
+              <p>Projetos que cruzam fronteiras sem sair do Brasil.</p>
+            </li>
           </p>
         </div>
 
