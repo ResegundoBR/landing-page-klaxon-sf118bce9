@@ -14,7 +14,7 @@ export default function Index() {
 
   return (
     <div className="w-full flex flex-col">
-      <HeroSection />
+      <HeroSection onSelectModalidade={setSelectedModalidade} />
       <ProjectsGrid />
       <Differentials />
       <SelectionSection onSelectModalidade={setSelectedModalidade} />

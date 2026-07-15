@@ -25,15 +25,22 @@ export default function Layout() {
       </main>
 
       <footer className="bg-foreground text-white py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 font-bold">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div className="text-center md:text-left">
               <span className="font-serif text-3xl font-bold tracking-widest block mb-4">
                 KLAXON
               </span>
               <p className="text-gray-400 text-sm max-w-sm">
-                Design Assinado e Acabamento Premium. Elevando o padrão internacional na fabricação
-                de projetos sob medida.
+                <div>Toda luminária nasce da mesma forma: dentro da nossa fábrica.</div>
+                <div>
+                  <br />
+                </div>
+                <div>
+                  Algumas fazem parte das Coleções Klaxon. Outras são desenvolvidas exclusivamente
+                  para um único projeto. Todas compartilham o mesmo compromisso com design,
+                  fabricação e acabamento.
+                </div>
               </p>
             </div>
 

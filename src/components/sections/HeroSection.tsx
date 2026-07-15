@@ -1,15 +1,23 @@
 import { ArrowRight, MessageCircle } from 'lucide-react'
-import heroBg from '@/assets/conecta.landing.jpg-aa42e.jpeg'
-
-const WHATSAPP_URL = 'https://wa.me/5541987462093'
+import heroBg from '@/assets/upper.landing.jpg-1-7110b.jpeg'
 
 const HERO_PARAGRAPHS = [
   'Desenvolvemos luminárias decorativas sob medida para residências e projetos de arquitetura que exigem mais do que um catálogo pode oferecer.',
   'A inspiração pode nascer de uma viagem, de uma obra de arquitetura, de um PIN ou simplesmente de uma ideia.',
 ]
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onSelectModalidade: (modalidade: string) => void
+}
+
+export function HeroSection({ onSelectModalidade }: HeroSectionProps) {
   const headline = 'Existem projetos que não encontram a luminária certa. Encontram a Klaxon.'
+
+  function handleAction() {
+    onSelectModalidade('especial')
+    const el = document.getElementById('contato')
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <section className="relative w-full min-h-[100vh] flex items-center justify-center overflow-hidden py-20 md:py-0">
@@ -38,10 +46,9 @@ export function HeroSection() {
           ))}
         </div>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 max-w-2xl mx-auto">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={handleAction}
             className="inline-flex items-center justify-center gap-3 bg-primary text-primary-foreground px-6 sm:px-8 py-4 text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider hover:bg-white hover:text-foreground transition-all duration-500 group w-full sm:w-auto"
           >
             <MessageCircle className="w-5 h-5 flex-shrink-0" />
@@ -49,11 +56,10 @@ export function HeroSection() {
               Quero desenvolver uma luminária exclusiva
             </span>
             <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          </button>
+          <button
+            type="button"
+            onClick={handleAction}
             className="inline-flex items-center justify-center gap-3 border border-white/70 text-white px-6 sm:px-8 py-4 text-xs sm:text-sm md:text-base font-semibold uppercase tracking-wider hover:bg-white hover:text-foreground transition-all duration-500 group w-full sm:w-auto"
           >
             <MessageCircle className="w-5 h-5 flex-shrink-0" />
@@ -61,7 +67,7 @@ export function HeroSection() {
               Quero enviar uma referência para avaliação
             </span>
             <ArrowRight className="w-5 h-5 flex-shrink-0 group-hover:translate-x-1 transition-transform" />
-          </a>
+          </button>
         </div>
       </div>
     </section>
