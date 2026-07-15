@@ -2,7 +2,7 @@ import pb from '@/lib/pocketbase/client'
 
 export interface LeadData {
   name: string
-  email: string
+  email?: string
   whatsapp: string
   project_type: string
   modalidade?: string
@@ -19,7 +19,7 @@ export const createLead = async (data: LeadData) => {
 
   const fields: Record<string, string> = {
     name: data.name,
-    email: data.email,
+    email: data.email ?? '',
     whatsapp: data.whatsapp,
     project_type: data.project_type,
     modalidade: data.modalidade ?? '',

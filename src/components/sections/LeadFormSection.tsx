@@ -6,8 +6,8 @@ import { Upload, X, ImageIcon } from 'lucide-react'
 import { createLead } from '@/services/leads'
 import { useToast } from '@/hooks/use-toast'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Button } from '@/components/ui/button'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Select,
   SelectContent,
@@ -24,11 +24,9 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { extractFieldErrors } from '@/lib/pocketbase/errors'
-import { cn } from '@/lib/utils'
 
 const formSchema = z.object({
   name: z.string().min(2, 'Nome é obrigatório'),
-  email: z.string().email('E-mail inválido'),
   whatsapp: z.string().min(10, 'WhatsApp é obrigatório'),
   project_type: z.string().min(1, 'Selecione o tipo de projeto'),
   modalidade: z.string().min(1, 'Selecione a modalidade'),
@@ -37,19 +35,6 @@ const formSchema = z.object({
   project_phase: z.string().min(1, 'Selecione uma opção'),
   reference_links: z.string().optional(),
 })
-
-const userProfileOptions = [
-  { value: 'cliente-final', label: 'Cliente final construindo, reformando ou decorando' },
-  { value: 'arquiteto-designer', label: 'Arquiteto ou designer especificando para cliente' },
-  { value: 'lojista-parceiro', label: 'Lojista ou parceiro comercial' },
-]
-
-const projectPhaseOptions = [
-  { value: 'pesquisa-inicial', label: 'Pesquisa inicial' },
-  { value: 'fase-orcamento', label: 'Fase de orçamento' },
-  { value: 'fase-compra', label: 'Fase de compra' },
-  { value: 'tenho-referencia', label: 'Já tenho uma referência e preciso encontrar uma solução' },
-]
 
 export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean; source: string }) {
   const { toast } = useToast()
@@ -61,7 +46,6 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      email: '',
       whatsapp: '',
       project_type: '',
       modalidade: '',
@@ -147,34 +131,16 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
           >
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">Nome Completo</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="Como gostaria de ser chamado"
-                          className="h-12 rounded-none border-border"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormField
                     control={form.control}
-                    name="email"
+                    name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground">E-mail</FormLabel>
+                        <FormLabel className="text-foreground">Nome Completo</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="seu@email.com"
-                            type="email"
+                            placeholder="Como gostaria de ser chamado"
                             className="h-12 rounded-none border-border"
                             {...field}
                           />
@@ -215,9 +181,9 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="residencial">Residencial de Alto Padrão</SelectItem>
-                            <SelectItem value="comercial">Comercial / Varejo</SelectItem>
-                            <SelectItem value="corporativo">Corporativo / Escritórios</SelectItem>
+                            <SelectItem value="residencial">Residencial</SelectItem>
+                            <SelectItem value="comercial">Comercial</SelectItem>
+                            <SelectItem value="corporativo">Corporativo</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -237,8 +203,56 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="pecas-de-linha">Peças de Linha</SelectItem>
-                            <SelectItem value="projeto-especial">Projeto Especial</SelectItem>
+                            <SelectItem value="linha">Linha</SelectItem>
+                            <SelectItem value="especial">Especial</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <FormField
+                    control={form.control}
+                    name="investimento"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-foreground">Desejo investir</FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 rounded-none border-border">
+                              <SelectValue placeholder="Selecione a faixa de investimento" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="ate-500">Até R$ 500,00</SelectItem>
+                            <SelectItem value="ate-2000">Até R$ 2.000,00</SelectItem>
+                            <SelectItem value="acima-2000">Acima de R$ 2.000,00</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="user_profile"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-foreground">
+                          Qual melhor descreve você neste projeto?
+                        </FormLabel>
+                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                          <FormControl>
+                            <SelectTrigger className="h-12 rounded-none border-border">
+                              <SelectValue placeholder="Selecione uma opção" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent>
+                            <SelectItem value="cliente-final">Cliente final</SelectItem>
+                            <SelectItem value="arquiteto">Arquiteto</SelectItem>
+                            <SelectItem value="lojista">Lojista</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -248,92 +262,24 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                 </div>
                 <FormField
                   control={form.control}
-                  name="investimento"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">Desejo investir</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger className="h-12 rounded-none border-border">
-                            <SelectValue placeholder="Selecione a faixa de investimento" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="ate-500">Até R$ 500,00</SelectItem>
-                          <SelectItem value="ate-2000">Até R$ 2.000,00</SelectItem>
-                          <SelectItem value="acima-2000">Acima de R$ 2.000,00</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="user_profile"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="text-foreground">
-                        Qual melhor descreve você neste projeto?
-                      </FormLabel>
-                      <FormControl>
-                        <ToggleGroup
-                          type="single"
-                          value={field.value}
-                          onValueChange={(val) => field.onChange(val ?? '')}
-                          className="flex flex-wrap gap-2 justify-start"
-                        >
-                          {userProfileOptions.map((opt) => (
-                            <ToggleGroupItem
-                              key={opt.value}
-                              value={opt.value}
-                              className={cn(
-                                'rounded-full border border-border px-4 py-2 text-sm',
-                                'hover:bg-accent transition-colors duration-200',
-                                'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
-                                'data-[state=on]:border-primary',
-                              )}
-                            >
-                              {opt.label}
-                            </ToggleGroupItem>
-                          ))}
-                        </ToggleGroup>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
                   name="project_phase"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel className="text-foreground">
                         Em que fase está o seu projeto?
                       </FormLabel>
-                      <FormControl>
-                        <ToggleGroup
-                          type="single"
-                          value={field.value}
-                          onValueChange={(val) => field.onChange(val ?? '')}
-                          className="flex flex-wrap gap-2 justify-start"
-                        >
-                          {projectPhaseOptions.map((opt) => (
-                            <ToggleGroupItem
-                              key={opt.value}
-                              value={opt.value}
-                              className={cn(
-                                'rounded-full border border-border px-4 py-2 text-sm',
-                                'hover:bg-accent transition-colors duration-200',
-                                'data-[state=on]:bg-primary data-[state=on]:text-primary-foreground',
-                                'data-[state=on]:border-primary',
-                              )}
-                            >
-                              {opt.label}
-                            </ToggleGroupItem>
-                          ))}
-                        </ToggleGroup>
-                      </FormControl>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger className="h-12 rounded-none border-border">
+                            <SelectValue placeholder="Selecione uma opção" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          <SelectItem value="inicial">Inicial</SelectItem>
+                          <SelectItem value="orcamento">Orçamento</SelectItem>
+                          <SelectItem value="compra">Compra</SelectItem>
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -347,9 +293,9 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                         Links de referência (Pinterest, sites, etc.)
                       </FormLabel>
                       <FormControl>
-                        <Input
+                        <Textarea
                           placeholder="https://br.pinterest.com/..."
-                          className="h-12 rounded-none border-border"
+                          className="rounded-none border-border min-h-[80px]"
                           {...field}
                         />
                       </FormControl>
