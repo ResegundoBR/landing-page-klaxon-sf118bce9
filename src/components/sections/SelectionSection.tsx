@@ -26,9 +26,11 @@ export function SelectionSection() {
     <section className="py-24 md:py-32 bg-foreground text-background">
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="text-center mb-16 animate-fade-in-up">
-          <span className="text-primary font-medium tracking-widest uppercase text-sm mb-4 block">
-            Comece aqui
-          </span>
+          <p className="text-background/90 text-base md:text-lg leading-relaxed font-light max-w-3xl mx-auto mb-10">
+            Algumas das luminárias que desenvolvemos começam com uma imagem salva, uma fotografia de
+            viagem ou uma referência compartilhada pelo arquiteto. O ponto de partida é a
+            inspiração; o resultado é uma luminária desenvolvida especialmente para aquele projeto.
+          </p>
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6 leading-tight">
             Por onde você quer começar?
           </h2>
