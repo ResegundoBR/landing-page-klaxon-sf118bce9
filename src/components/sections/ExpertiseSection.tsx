@@ -1,3 +1,5 @@
+import pinLuxoImg from '@/assets/pin.luxo.jpg-03b44.jpeg'
+
 export function ExpertiseSection() {
   return (
     <section className="py-24 md:py-32 bg-card">
@@ -21,7 +23,7 @@ export function ExpertiseSection() {
           >
             <div className="relative overflow-hidden aspect-[4/3] lg:aspect-square bg-muted">
               <img
-                src="https://img.usecurling.com/p/800/800?q=decorative%20pendant%20light"
+                src={pinLuxoImg}
                 alt="Luminária decorativa exclusiva Klaxon"
                 className="w-full h-full object-cover"
                 loading="lazy"
