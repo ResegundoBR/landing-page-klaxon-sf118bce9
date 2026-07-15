@@ -39,11 +39,6 @@ export function ProjectsGrid() {
             <br />
             Se entrega.
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-light">
-            <li class="py-0">
-              <p>Projetos que cruzam fronteiras sem sair do Brasil.</p>
-            </li>
-          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-8">
