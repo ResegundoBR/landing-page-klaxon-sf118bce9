@@ -1,6 +1,6 @@
 import { Lightbulb, PenTool, ArrowRight } from 'lucide-react'
-import colecoesImg from '@/assets/constellation10-1.jpg-1-e7e15.jpeg'
-import especialImg from '@/assets/conecta.especial1-dc13f.jpeg'
+import colecoesImg from '@/assets/landing1.jpg-e4f83.jpeg'
+import especialImg from '@/assets/landing2.jpg-885cd.jpeg'
 
 export function SelectionSection() {
   const cards = [
