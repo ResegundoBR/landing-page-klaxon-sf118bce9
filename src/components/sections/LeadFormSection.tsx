@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
@@ -36,7 +36,22 @@ const formSchema = z.object({
   reference_links: z.string().optional(),
 })
 
-export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean; source: string }) {
+function formatWhatsApp(value: string): string {
+  const digits = value.replace(/\D/g, '').slice(0, 11)
+  if (digits.length === 0) return ''
+  if (digits.length <= 2) return `(${digits}`
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`
+  if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`
+}
+
+interface LeadFormSectionProps {
+  isPinterest: boolean
+  source: string
+  selectedModalidade: string
+}
+
+export function LeadFormSection({ isPinterest, source, selectedModalidade }: LeadFormSectionProps) {
   const { toast } = useToast()
   const [isLoading, setIsLoading] = useState(false)
   const [attachment, setAttachment] = useState<File | null>(null)
@@ -55,6 +70,12 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
       reference_links: '',
     },
   })
+
+  useEffect(() => {
+    if (selectedModalidade) {
+      form.setValue('modalidade', selectedModalidade, { shouldValidate: true })
+    }
+  }, [selectedModalidade, form])
 
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -157,9 +178,10 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                         <FormLabel className="text-foreground">WhatsApp</FormLabel>
                         <FormControl>
                           <Input
-                            placeholder="+55 (11) 99999-9999"
+                            placeholder="(11) 99999-9999"
                             className="h-12 rounded-none border-border"
-                            {...field}
+                            value={formatWhatsApp(field.value)}
+                            onChange={(e) => field.onChange(e.target.value)}
                           />
                         </FormControl>
                         <FormMessage />
@@ -196,7 +218,11 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel className="text-foreground">Modalidade</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                          value={field.value}
+                        >
                           <FormControl>
                             <SelectTrigger className="h-12 rounded-none border-border">
                               <SelectValue placeholder="Selecione a modalidade" />
@@ -240,9 +266,7 @@ export function LeadFormSection({ isPinterest, source }: { isPinterest: boolean;
                     name="user_profile"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-foreground">
-                          Qual melhor descreve você neste projeto?
-                        </FormLabel>
+                        <FormLabel className="text-foreground">Sou</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="h-12 rounded-none border-border">

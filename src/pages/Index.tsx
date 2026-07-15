@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { HeroSection } from '@/components/sections/HeroSection'
 import { ProjectsGrid } from '@/components/sections/ProjectsGrid'
 import { Differentials } from '@/components/sections/Differentials'
@@ -9,15 +10,20 @@ import { useSource } from '@/hooks/use-source'
 
 export default function Index() {
   const { isPinterest, source } = useSource()
+  const [selectedModalidade, setSelectedModalidade] = useState<string>('')
 
   return (
     <div className="w-full flex flex-col">
       <HeroSection />
       <ProjectsGrid />
       <Differentials />
-      <SelectionSection />
+      <SelectionSection onSelectModalidade={setSelectedModalidade} />
       <ExpertiseSection />
-      <LeadFormSection isPinterest={isPinterest} source={source} />
+      <LeadFormSection
+        isPinterest={isPinterest}
+        source={source}
+        selectedModalidade={selectedModalidade}
+      />
       <FAQSection />
     </div>
   )

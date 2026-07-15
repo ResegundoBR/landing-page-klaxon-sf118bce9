@@ -2,7 +2,11 @@ import { Lightbulb, PenTool, ArrowRight } from 'lucide-react'
 import colecoesImg from '@/assets/landing1.jpg-e4f83.jpeg'
 import especialImg from '@/assets/landing2.jpg-885cd.jpeg'
 
-export function SelectionSection() {
+interface SelectionSectionProps {
+  onSelectModalidade: (modalidade: string) => void
+}
+
+export function SelectionSection({ onSelectModalidade }: SelectionSectionProps) {
   const cards = [
     {
       icon: Lightbulb,
@@ -11,7 +15,7 @@ export function SelectionSection() {
         'Nossas coleções reúnem luminárias autorais desenvolvidas ao longo de doze anos de fábrica. Produzidas sob encomenda, elas fazem parte de projetos assinados por arquitetos que encontram na Klaxon uma extensão do próprio processo criativo. Escolha a peça que melhor conversa com o seu ambiente.',
       button: 'Explorar as coleções',
       image: colecoesImg,
-      modalidade: 'pecas-de-linha',
+      modalidade: 'linha',
     },
     {
       icon: PenTool,
@@ -20,9 +24,15 @@ export function SelectionSection() {
         'Mais do que uma luminária, uma experiência de criação. Poucos clientes conhecem onde uma luminária realmente nasce. Tenha acesso à fábrica, acompanhe cada etapa e participe do desenvolvimento de uma peça feita exclusivamente para você.',
       button: 'Desenvolver uma peça exclusiva',
       image: especialImg,
-      modalidade: 'projeto-especial',
+      modalidade: 'especial',
     },
   ]
+
+  function handleSelect(modalidade: string) {
+    onSelectModalidade(modalidade)
+    const el = document.getElementById('contato')
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <section className="py-24 md:py-32 bg-foreground text-background">
@@ -67,13 +77,14 @@ export function SelectionSection() {
                   <p className="text-muted-foreground text-base leading-relaxed font-light mb-8 flex-1">
                     {card.description}
                   </p>
-                  <a
-                    href="#contato"
-                    className="inline-flex items-center gap-3 text-primary font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all duration-300 mt-auto"
+                  <button
+                    type="button"
+                    onClick={() => handleSelect(card.modalidade)}
+                    className="inline-flex items-center gap-3 text-primary font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all duration-300 mt-auto text-left"
                   >
                     {card.button}
                     <ArrowRight className="w-5 h-5" />
-                  </a>
+                  </button>
                 </div>
               </div>
             )
