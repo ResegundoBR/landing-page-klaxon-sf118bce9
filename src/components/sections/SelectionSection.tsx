@@ -44,7 +44,7 @@ export function SelectionSection() {
             return (
               <div
                 key={i}
-                className="group relative overflow-hidden bg-card text-card-foreground animate-fade-in-up"
+                className="group relative overflow-hidden bg-card text-card-foreground animate-fade-in-up flex flex-col"
                 style={{ animationDelay: `${i * 150}ms` }}
               >
                 <div className="relative h-56 md:h-64 overflow-hidden">
@@ -55,21 +55,21 @@ export function SelectionSection() {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
-                  <div className="absolute bottom-4 left-6 flex items-center gap-3">
-                    <Icon className="w-8 h-8 text-primary stroke-[1]" />
-                    <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground">
+                  <div className="absolute bottom-4 left-6 right-6 flex items-end gap-3">
+                    <Icon className="w-8 h-8 text-primary stroke-[1] shrink-0 mb-1" />
+                    <h3 className="text-2xl md:text-3xl font-serif font-bold text-foreground min-h-[2.5em] flex items-center">
                       {card.title}
                     </h3>
                   </div>
                 </div>
 
-                <div className="p-8 md:p-10">
-                  <p className="text-muted-foreground text-base leading-relaxed font-light mb-8">
+                <div className="p-8 md:p-10 flex flex-col flex-1">
+                  <p className="text-muted-foreground text-base leading-relaxed font-light mb-8 flex-1">
                     {card.description}
                   </p>
                   <a
                     href="#contato"
-                    className="inline-flex items-center gap-3 text-primary font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all duration-300"
+                    className="inline-flex items-center gap-3 text-primary font-semibold uppercase tracking-wider text-sm hover:gap-4 transition-all duration-300 mt-auto"
                   >
                     {card.button}
                     <ArrowRight className="w-5 h-5" />
