@@ -4,6 +4,7 @@ import { ProjectsGrid } from '@/components/sections/ProjectsGrid'
 import { Differentials } from '@/components/sections/Differentials'
 import { SelectionSection } from '@/components/sections/SelectionSection'
 import { ExpertiseSection } from '@/components/sections/ExpertiseSection'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
 import { LeadFormSection } from '@/components/sections/LeadFormSection'
 import { FAQSection } from '@/components/sections/FAQSection'
 import { useSource } from '@/hooks/use-source'
@@ -19,6 +20,7 @@ export default function Index() {
       <Differentials />
       <SelectionSection onSelectModalidade={setSelectedModalidade} />
       <ExpertiseSection />
+      <TestimonialsSection />
       <LeadFormSection
         isPinterest={isPinterest}
         source={source}
