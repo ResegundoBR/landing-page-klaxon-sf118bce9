@@ -210,10 +210,14 @@ export function TestimonialsSection() {
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4 text-foreground">
-            O que nossos clientes dizem
+            <div>A experiência de quem escolheu a Klaxon</div>
+            <div>
+              <br />
+            </div>
           </h2>
           <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto">
-            Histórias reais de quem confiou na Klaxon para iluminar seus ambientes.
+            Conheça os relatos de clientes e arquitetos que encontraram a peça ideal em nossas
+            coleções ou participaram do desenvolvimento de uma luminária exclusiva.
           </p>
         </div>
 
