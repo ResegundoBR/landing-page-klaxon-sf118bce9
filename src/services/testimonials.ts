@@ -14,7 +14,7 @@ export interface Testimonial {
 
 export const getTestimonials = async (): Promise<Testimonial[]> => {
   return await pb.collection('testimonials').getFullList<Testimonial>({
-    sort: '-created',
+    sort: '@random',
   })
 }
 

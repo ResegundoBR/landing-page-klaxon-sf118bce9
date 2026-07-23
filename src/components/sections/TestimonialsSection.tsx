@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { Star, Quote } from 'lucide-react'
+import { useRealtime } from '@/hooks/use-realtime'
 import {
   Carousel,
   CarouselContent,
@@ -203,6 +204,10 @@ export function TestimonialsSection() {
     loadTestimonials()
   }, [loadTestimonials])
 
+  useRealtime('testimonials', () => {
+    loadTestimonials()
+  })
+
   if (testimonials.length === 0) return null
 
   return (
@@ -210,10 +215,7 @@ export function TestimonialsSection() {
       <div className="container px-4 mx-auto max-w-6xl">
         <div className="text-center mb-12 md:mb-16 animate-fade-in-up">
           <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4 text-foreground">
-            <div>A experiência de quem escolheu a Klaxon</div>
-            <div>
-              <br />
-            </div>
+            A experiência de quem escolheu a Klaxon
           </h2>
           <p className="text-muted-foreground text-lg font-light max-w-2xl mx-auto">
             Conheça os relatos de clientes e arquitetos que encontraram a peça ideal em nossas
